@@ -1,18 +1,17 @@
 collections:
-  authors:
+  topics:
     output: true
 
 plugins:
-  - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
 
 defaults:
   - scope:
       path: ""
-      type: "authors"
+      type: "topics"
     values:
-      layout: "author"
+      layout: "topic"
   - scope:
       path: ""
       type: "posts"

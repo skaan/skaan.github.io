@@ -1,5 +1,29 @@
-<nav>
-  {% for item in site.data.navigation %}
-  <a href="{{ item.link }}" {% if page.url == item.link %}class="current" {% endif %}>{{ item.name }}</a>
-  {% endfor %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">Kaan Sentürk</a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      {% for topic in site.topics %}
+      <li class=" nav-item dropdown">
+        <a id="{{topic.key}}Dropdown" class="nav-link dropdown-toggle" href="{{ topic.url }}" role="button"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{ topic.name }}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="{{topic.key}}Dropdown">
+          {% assign filtered_posts = site.posts | where: 'topic', page.key %}
+          {% for post in filtered_posts %}
+          <a class="dropdown-item" href="{{ post.url }}">{{ post.title }}</a>
+          {% endfor %}
+
+        </div>
+      </li>
+      {% endfor %}
+
+    </ul>
+  </div>
 </nav>
